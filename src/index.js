@@ -113,8 +113,13 @@ class Game extends React.Component {
 			
 			return (
 				// Para cada jogado no histórico é criado um item
-				<li key ={ move }> 
-					<button onClick={ () => this.jumpTo(move) }> { desc }</button>
+				<li key={ move }> 
+					<button 
+						className={ move === this.state.stepNumber ? "isActive" : ''} 
+						onClick={ () => this.jumpTo(move) }
+					> 					
+						{ desc }
+					</button>
 				</li>
 			);
 		});
