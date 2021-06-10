@@ -31,7 +31,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ### Requisitos
 
-- Você vai precisar instalar o [Node.js](https://nodejs.org/en/download/) e o [NPM] no seu projeto.
+- Você vai precisar instalar o [Node.js](https://nodejs.org/en/download/) e o NPM no seu projeto.
 
 * Clone o projeto
 * Instale as dependências com npm
