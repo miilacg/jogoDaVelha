@@ -1,23 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Square } from './Components/Square';
 import './index.css';
-
-
-
-// o square é um componente controlado (controlled component) 
-// o Board tem controle total sobre ele
-function Square(props) {
-	return (
-		// Quando chama setState em um componente, o React atualiza automaticamente os componentes filho dele
-		<button 
-			className="square" 
-			onClick={ props.onClick } // Quando o quadrado for clicado será chamada a função onClick do tabuleiro
-		>
-			{ props.value }
-		</button>
-	);
-}
 
 
 
