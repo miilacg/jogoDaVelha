@@ -113,10 +113,14 @@ class Game extends React.Component {
 		let status;
 
 		// Renderiza o status do jogo
-		if(winner) {
-			status = 'Winner: ' + winner;
+		if(!winner) {
+			status = 'Próximo jogador: ' + (this.state.xIsNext ? 'X' : 'O');
 		} else {
-			status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+			if(winner === 8){
+				status = 'Empate';
+			} else {
+				status = 'Vencedor: ' + winner;
+			}
 		}
 
     return (
@@ -147,6 +151,7 @@ ReactDOM.render(
 
 // Dado um array de 9 quadrados esta função irá verificar se há um vencedor
 function calculateWinner(squares) {
+	let count = 0;
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -161,7 +166,16 @@ function calculateWinner(squares) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
-    }
+    } 
+
+		if (squares[c] != null) {
+			count ++;
+		}
   }
+	console.log(count);
+	if(count === 8) {
+		return count;
+	}
+
   return null;
 }
