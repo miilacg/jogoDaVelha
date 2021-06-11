@@ -1,43 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Square } from './Components/Square';
+import { Board } from './Components/Board';
 import './index.css';
-
-
-
-class Board extends React.Component {
-  renderSquare(i) {
-    return (
-			<Square 
-				value={ this.props.squares[i] }
-				onClick={ () => this.props.onClick(i) }
-			/>
-		);
-  }
-
-  render() {
-		return (
-      <div>
-        <div className="board-row">
-          { this.renderSquare(0) }
-          { this.renderSquare(1) }
-          { this.renderSquare(2) }
-        </div>
-        <div className="board-row">
-          { this.renderSquare(3) }
-          { this.renderSquare(4) }
-          { this.renderSquare(5) }
-        </div>
-        <div className="board-row">
-          { this.renderSquare(6) }
-          { this.renderSquare(7) }
-          { this.renderSquare(8) }
-        </div>
-      </div>
-    );
-  }
-}
 
 
 
@@ -67,7 +32,7 @@ class Game extends React.Component {
 			return;
 		}
 
-		squares[i] = this.state.xIsNext ? 'X' : 'O';
+		squares[i] = this.state.xIsNext ? 'x' : 'o';
 		this.setState({ 
 			history: history.concat([{
 				squares: squares,
@@ -114,7 +79,7 @@ class Game extends React.Component {
 
 		// Renderiza o status do jogo
 		if(!winner) {
-			status = 'Próximo jogador: ' + (this.state.xIsNext ? 'X' : 'O');
+			status = 'Próximo jogador: ' + (this.state.xIsNext ? 'x' : 'o');
 		} else {
 			if(winner === 8){
 				status = 'Empate';
@@ -165,14 +130,25 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+			const aux = squares[a]; 
+			if(aux === 'o') {
+				squares[a] = 'O';
+				squares[b] = 'O';
+				squares[c] = 'O';
+			} else {
+				squares[a] = 'X';
+				squares[b] = 'X';
+				squares[c] = 'X';
+			}
+      
+			return aux;
     } 
 
 		if (squares[c] != null) {
 			count ++;
 		}
   }
-	console.log(count);
+
 	if(count === 8) {
 		return count;
 	}
