@@ -8,7 +8,8 @@ export function Square(props) {
 	return (
 		// Quando chama setState em um componente, o React atualiza automaticamente os componentes filho dele
 		<button 
-			className="square" 
+			className='square'
+			id={ props.style }
 			onClick={ props.onClick } // Quando o quadrado for clicado será chamada a função onClick do tabuleiro
 		>
 			{ props.value }

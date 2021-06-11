@@ -32,7 +32,7 @@ class Game extends React.Component {
 			return;
 		}
 
-		squares[i] = this.state.xIsNext ? 'x' : 'o';
+		squares[i] = this.state.xIsNext ? 'X' : 'O';
 		this.setState({ 
 			history: history.concat([{
 				squares: squares,
@@ -79,7 +79,7 @@ class Game extends React.Component {
 
 		// Renderiza o status do jogo
 		if(!winner) {
-			status = 'Próximo jogador: ' + (this.state.xIsNext ? 'x' : 'o');
+			status = 'Próximo jogador: ' + (this.state.xIsNext ? 'X' : 'O');
 		} else {
 			if(winner === 8){
 				status = 'Empate';
@@ -130,18 +130,15 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-			const aux = squares[a]; 
-			if(aux === 'o') {
-				squares[a] = 'O';
-				squares[b] = 'O';
-				squares[c] = 'O';
-			} else {
-				squares[a] = 'X';
-				squares[b] = 'X';
-				squares[c] = 'X';
-			}
-      
-			return aux;
+			const winnerA = document.getElementById('square'+a);
+			const winnerB = document.getElementById('square'+b);
+			const winnerC = document.getElementById('square'+c);
+
+			winnerA.setAttribute("style", "color: green; border: 2px solid green");
+			winnerB.setAttribute("style", "color: green; border: 2px solid green");
+			winnerC.setAttribute("style", "color: green; border: 2px solid green");
+
+			return squares[a];
     } 
 
 		if (squares[c] != null) {
